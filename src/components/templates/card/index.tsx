@@ -35,7 +35,7 @@ export const CardBlurTemplate = ({
             ? "systemUltraThinMaterialDark"
             : "systemUltraThinMaterialLight"
         }
-        intensity={20}
+        intensity={30}
         style={[styles.container, style]}
       >
         {children}
