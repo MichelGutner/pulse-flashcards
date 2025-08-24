@@ -2,26 +2,21 @@ import { Text } from "@/components/ThemedText";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { useThemeContext } from "@/src/context/ThemeContext";
 import React from "react";
-import { StyleSheet } from "react-native";
-import { CardTemplate } from "../templates";
+import { CardBlurTemplate } from "../templates";
 import { TCardProps } from "./types";
 
 export const Card = ({ label, icon, number }: TCardProps) => {
   const { theme } = useThemeContext();
-  const color = theme.colors.text;
+  const color = theme.colors.background;
   return (
-    <CardTemplate>
-      <IconSymbol name={icon} size={20} color={color} />
-      <Text type="subtitle">
+    <CardBlurTemplate>
+      <IconSymbol name={icon} size={18} color={color} />
+      <Text style={{ color }} type="subtitle">
         {number}
       </Text>
-      <Text style={styles.label}>{label}</Text>
-    </CardTemplate>
+      <Text style={{ color }} type="default">
+        {label}
+      </Text>
+    </CardBlurTemplate>
   );
 };
-
-const styles = StyleSheet.create({
-  label: {
-    fontSize: 14,
-  },
-});
