@@ -21,10 +21,10 @@ export const SearchBar = (props: TSearchBarProps) => {
     >
       <Ionicons name="search" size={16} color={theme.colors.outline} />
       <TextInput
-        {...props}
         placeholder="Buscar..."
         placeholderTextColor={theme.colors.outline}
         style={{ flex: 1, marginLeft: 4, color: theme.colors.text }}
+        {...props}
       />
     </CardBlurTemplate>
   );

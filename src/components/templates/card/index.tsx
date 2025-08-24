@@ -1,3 +1,4 @@
+import { useThemeContext } from "@/src/context/ThemeContext";
 import { BlurView } from "expo-blur";
 import React, { PropsWithChildren } from "react";
 import {
@@ -17,6 +18,7 @@ export const CardBlurTemplate = ({
   onPress?: () => void;
   contentContainerStyle?: ViewStyle;
 }>) => {
+  const { isDark } = useThemeContext();
   const handlePress = (e: GestureResponderEvent) => {
     e.stopPropagation();
     onPress?.();
@@ -28,7 +30,11 @@ export const CardBlurTemplate = ({
       style={[styles.content, contentContainerStyle]}
     >
       <BlurView
-        tint="systemUltraThinMaterialLight"
+        tint={
+          !isDark
+            ? "systemUltraThinMaterialDark"
+            : "systemUltraThinMaterialLight"
+        }
         intensity={20}
         style={[styles.container, style]}
       >
