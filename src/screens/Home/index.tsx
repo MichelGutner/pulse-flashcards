@@ -1,10 +1,9 @@
-import { Card } from "@/components/card";
 import { DeckCard } from "@/components/DeckCard";
+import { Card } from "@/src/components/Card";
 import { LinearHeader } from "@/src/components/templates";
-import { useRouter } from "expo-router";
+import { useThemeContext } from "@/src/context/ThemeContext";
 import React, { useState } from "react";
 import { FlatList, ScrollView, StyleSheet, View } from "react-native";
-import { useTheme } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { FastLearningCard } from "./components";
 import { TodayGoal } from "./components/todayGoal";
@@ -17,9 +16,8 @@ type Deck = {
 };
 
 export const HomeScreen = () => {
-  const theme = useTheme();
+  const { theme } = useThemeContext();
   const { top, bottom } = useSafeAreaInsets();
-  const [searchQuery, setSearchQuery] = useState("");
   const [decks, setDecks] = useState<Deck[]>([
     {
       id: "1",
@@ -40,13 +38,6 @@ export const HomeScreen = () => {
       lastStudied: new Date("2023-05-05"),
     },
   ]);
-
-  const router = useRouter();
-
-  const handleDeckPress = (deckId: string) => {
-    // Navigate to study screen
-    router.push(`/study/${deckId}`);
-  };
 
   const handleDeckOptionsPress = (deckId: string) => {
     // Show deck options
