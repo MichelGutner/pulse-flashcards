@@ -2,13 +2,13 @@ import { Text } from "@/components/ThemedText";
 import { useThemeContext } from "@/src/context/ThemeContext";
 import React, { useEffect, useRef, useState } from "react";
 import {
-    Keyboard,
-    Modal,
-    Pressable,
-    StyleSheet,
-    TextInput,
-    TouchableWithoutFeedback,
-    View,
+  Keyboard,
+  Modal,
+  Pressable,
+  StyleSheet,
+  TextInput,
+  TouchableWithoutFeedback,
+  View,
 } from "react-native";
 import { Button } from "../button";
 import { LayoutWithSafeArea } from "../templates/layout/safeArea";
@@ -22,15 +22,25 @@ export const ModalAddItems = ({
   title,
   firstInput,
   secondInput,
+  tertiaryInput,
 }: TModalAddItemsProps) => {
   const [visible, setVisible] = useState(false);
   const { theme } = useThemeContext();
   const firstInputRef = useRef<TextInput>(null);
   const secondInputRef = useRef<TextInput>(null);
+  const tertiaryInputRef = useRef<TextInput>(null);
 
   const dismissModal = () => {
     setVisible(false);
     onClose?.();
+  };
+
+  const handleSecondInputSubmit = () => {
+    if (tertiaryInput) {
+      tertiaryInputRef.current?.focus();
+    } else {
+      Keyboard.dismiss();
+    }
   };
 
   useEffect(() => {
@@ -71,7 +81,9 @@ export const ModalAddItems = ({
                 placeholder={firstInput?.input?.placeholder}
                 placeholderTextColor={theme.colors.outline}
                 onSubmitEditing={() => secondInputRef.current?.focus()}
-                submitBehavior="newline"
+                submitBehavior="submit"
+                textAlignVertical="top"
+                multiline
                 style={{
                   ...styles.input,
                   borderColor: theme.colors.outline,
@@ -89,10 +101,11 @@ export const ModalAddItems = ({
                 {...secondInput?.input}
                 ref={secondInputRef}
                 returnKeyType="done"
-                onSubmitEditing={Keyboard.dismiss}
+                onSubmitEditing={handleSecondInputSubmit}
                 placeholder={secondInput?.input?.placeholder}
                 placeholderTextColor={theme.colors.outline}
                 textAlignVertical="top"
+                submitBehavior="submit"
                 multiline
                 style={{
                   ...styles.input,
@@ -101,6 +114,34 @@ export const ModalAddItems = ({
                   color: theme.colors.text,
                 }}
               />
+
+              {/**
+               * Link auxiliar:
+               */}
+              {tertiaryInput && (
+                <>
+                  <Text
+                    type="bodyMedium"
+                    style={{ marginTop: 8, color: theme.colors.text }}
+                  >
+                    {tertiaryInput?.label}
+                  </Text>
+                  <TextInput
+                    {...tertiaryInput?.input}
+                    ref={tertiaryInputRef}
+                    returnKeyType="done"
+                    onSubmitEditing={Keyboard.dismiss}
+                    placeholder={tertiaryInput?.input?.placeholder}
+                    placeholderTextColor={theme.colors.outline}
+                    submitBehavior="submit"
+                    style={{
+                      ...styles.input,
+                      borderColor: theme.colors.outline,
+                      color: theme.colors.text,
+                    }}
+                  />
+                </>
+              )}
               <View style={styles.buttonContainer}>
                 <Button
                   title="Cancelar"
@@ -109,7 +150,7 @@ export const ModalAddItems = ({
                   onPress={dismissModal}
                 />
                 <Button
-                  title="Criar Deck"
+                  title="Adicionar"
                   variant="primary"
                   style={{ flex: 1 }}
                   onPress={onSave}
@@ -130,14 +171,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   container: {
-    width: "90%",
+    minWidth: "90%",
+    maxWidth: "90%",
     padding: 20,
     borderRadius: 10,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    marginTop: 50,
   },
   input: {
     borderWidth: 0.5,
@@ -145,6 +186,7 @@ const styles = StyleSheet.create({
     padding: 8,
     marginTop: 5,
     marginBottom: 15,
+    maxHeight: 100,
   },
   buttonContainer: {
     flexDirection: "row",

@@ -18,7 +18,7 @@ const useButtonStyles = (variant: TButtonProps["variant"], theme: AppTheme) => {
     case "secondary":
       return {
         backgroundColor: "transparent",
-        borderColor: theme.colors.onBackground,
+        borderColor: theme.colors.outline,
         borderWidth: 0.2,
       };
     case "alert":
@@ -40,7 +40,7 @@ const useButtonStyles = (variant: TButtonProps["variant"], theme: AppTheme) => {
   }
 };
 
-export const Button = ({ variant, iconName, title, onPress }: TButtonProps) => {
+export const Button = ({ variant, iconName, title, onPress, style }: TButtonProps) => {
   const { theme } = useThemeContext();
   const buttonStyles = useButtonStyles(variant, theme);
 
@@ -52,10 +52,10 @@ export const Button = ({ variant, iconName, title, onPress }: TButtonProps) => {
   return (
     <TouchableOpacity
       onPress={handlePress}
-      style={[styles.button, buttonStyles]}
+      style={[styles.button, buttonStyles, style]}
     >
       {iconName && <IconSymbol name={iconName} size={20} color="white" />}
-      <Text style={{ color: theme.colors.background }} type="button">
+      <Text style={{ color: theme.colors.text }} type="button">
         {title}
       </Text>
     </TouchableOpacity>
@@ -68,9 +68,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 8,
-    padding: 12,
+    padding: 8,
     paddingHorizontal: 16,
-    borderRadius: 20,
+    borderRadius: 16,
   },
   buttonText: {
     color: "white",

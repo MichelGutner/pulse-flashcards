@@ -15,4 +15,8 @@ export type TModalAddItemsProps = {
     label: string;
     input: ComponentProps<typeof TextInput>;
   };
+  tertiaryInput?: {
+    label: string;
+    input: ComponentProps<typeof TextInput>;
+  };
 };
