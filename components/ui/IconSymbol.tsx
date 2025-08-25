@@ -23,6 +23,11 @@ const MAPPING = {
   'trophy': 'emoji-events',
   'clock': 'access-time',
   'chart.xyaxis.line': 'show-chart',
+  'calendar': 'date-range',
+  'plus': 'add',
+  'pencil': 'edit',
+  'trash': 'delete',
+  'play.fill': 'play-arrow',
 } as IconMapping;
 
 /**
