@@ -1,20 +1,3 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import { useTheme } from "react-native-paper";
+import { StudiesScreen } from "@/src/screens";
 
-const StudySessionScreen = () => {
-  const theme = useTheme();
-  return (
-    <View
-      style={[styles.container, { backgroundColor: theme.colors.background }]}
-    ></View>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default StudySessionScreen;
+export default StudiesScreen;

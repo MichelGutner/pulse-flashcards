@@ -1,8 +1,8 @@
-import BlurTabBarBackground from '@/components/ui/TabBarBackground.ios';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { useTheme } from 'react-native-paper';
+import BlurTabBarBackground from "@/components/ui/TabBarBackground.ios";
+import { useThemeContext } from "@/src/context/ThemeContext";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+import React from "react";
 
 type TabBarIconProps = {
   color: string;
@@ -10,19 +10,19 @@ type TabBarIconProps = {
 };
 
 export default function TabLayout() {
-  const theme = useTheme();
+  const { theme } = useThemeContext();
 
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: theme.colors.primary,
         tabBarInactiveTintColor: theme.colors.onSurfaceVariant,
-        tabBarBackground: () => <BlurTabBarBackground />, // <-- Aqui
+        tabBarBackground: () => <BlurTabBarBackground />,
         tabBarStyle: {
-          backgroundColor: 'transparent',
           borderTopWidth: 0,
-          // borderTopColor: theme.colors.primary,
-          position: 'absolute', // evita que sobreponha conteúdo
+          backgroundColor: "transparent",
+          position: "absolute",
+          elevation: 0,
         },
         headerShown: false,
       }}
@@ -30,7 +30,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Início',
+          title: "Início",
           tabBarIcon: ({ color, size }: TabBarIconProps) => (
             <MaterialCommunityIcons name="home" size={size} color={color} />
           ),
@@ -39,18 +39,26 @@ export default function TabLayout() {
       <Tabs.Screen
         name="study"
         options={{
-          title: 'Estudos',
+          title: "Estudos",
           tabBarIcon: ({ color, size }: TabBarIconProps) => (
-            <MaterialCommunityIcons name="book-open-page-variant-outline" size={size} color={color} />
+            <MaterialCommunityIcons
+              name="book-open-page-variant-outline"
+              size={size}
+              color={color}
+            />
           ),
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
-          title: 'Config',
+          title: "Config",
           tabBarIcon: ({ color, size }: TabBarIconProps) => (
-            <MaterialCommunityIcons name="cog-outline" size={size} color={color} />
+            <MaterialCommunityIcons
+              name="cog-outline"
+              size={size}
+              color={color}
+            />
           ),
         }}
       />
