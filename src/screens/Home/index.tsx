@@ -92,7 +92,7 @@ export const HomeScreen = () => {
             <Card label={item.label} icon={item.icon} number={item.number} />
           )}
           numColumns={2}
-          columnWrapperStyle={{ gap: 12 }}
+          columnWrapperStyle={{ gap: 8 }}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.contentCards}
           scrollEnabled={false}
@@ -109,8 +109,7 @@ export const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   contentCards: {
-    gap: 12,
-    padding: 12,
+    gap: 8,
   },
   content: {
     flex: 1,

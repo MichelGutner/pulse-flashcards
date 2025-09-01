@@ -1,9 +1,9 @@
 import { Text } from "@/components/ThemedText";
 import { IconSymbol } from "@/components/ui/IconSymbol";
+import { ProgressBar } from "@/src/components/ProgressBar";
 import { CardBlurTemplate } from "@/src/components/templates";
 import { useThemeContext } from "@/src/context/ThemeContext";
 import { StyleSheet, View } from "react-native";
-import Animated, { SlideInLeft } from "react-native-reanimated";
 import { TTodayGoalProps } from "./types";
 
 export const TodayGoal = ({ total, progress }: TTodayGoalProps) => {
@@ -22,21 +22,7 @@ export const TodayGoal = ({ total, progress }: TTodayGoalProps) => {
           5/20 cards
         </Text>
       </View>
-      <View
-        style={[
-          styles.progressBar,
-          { backgroundColor: theme.colors.outlineVariant },
-        ]}
-      >
-        <Animated.View
-        entering={SlideInLeft.duration(800)}
-          style={{
-            width: `${progressTotal}%`,
-            height: "100%",
-            backgroundColor: theme.colors.primary,
-          }}
-        />
-      </View>
+      <ProgressBar progress={progressTotal} />
       <Text type="bodySmall" style={{ color: theme.colors.outline }}>
         Faltam 15 cards para completar sua meta
       </Text>
@@ -58,11 +44,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-  },
-  progressBar: {
-    width: "100%",
-    height: 8,
-    borderRadius: 4,
-    overflow: "hidden",
   },
 });

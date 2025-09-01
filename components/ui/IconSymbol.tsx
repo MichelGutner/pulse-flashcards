@@ -29,6 +29,10 @@ const MAPPING = {
   'trash': 'delete',
   'play.fill': 'play-arrow',
   'hand.tap': 'touch-app',
+  'flame': 'whatshot',
+  'star': 'star',
+  'heart.fill': 'favorite',
+  'hourglass': 'hourglass-bottom',
 } as IconMapping;
 
 /**

@@ -33,6 +33,10 @@ const useButtonStyles = (variant: TButtonProps["variant"], theme: AppTheme) => {
       return {
         backgroundColor: "#28a745",
       };
+    case "warning":
+      return {
+        backgroundColor: "#fd7e14",
+      };
     default:
       return {
         backgroundColor: "#007bff",

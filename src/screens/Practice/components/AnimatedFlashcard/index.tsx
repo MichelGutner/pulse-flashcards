@@ -49,7 +49,7 @@ export const AnimatedFlashcard = ({
         { scale },
       ],
       opacity: interpolate(rotate.value, [0, 90], [1, 0]),
-      backgroundColor: theme.colors.secondary,
+      backgroundColor: theme.colors.background,
       shadowOpacity: interpolate(rotate.value, [0, 90, 180], [0.3, 0.1, 0.3]),
     };
   });
@@ -65,7 +65,7 @@ export const AnimatedFlashcard = ({
         { scale },
       ],
       opacity: interpolate(rotate.value, [90, 180], [0, 1]),
-      backgroundColor: theme.colors.outline,
+      backgroundColor: theme.colors.background,
       shadowOpacity: interpolate(rotate.value, [0, 90, 180], [0.3, 0.1, 0.3]),
     };
   });
@@ -93,20 +93,23 @@ export const AnimatedFlashcard = ({
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: "30%",
+    height: "70%",
     perspective: '2500',
   },
   card: {
     position: "absolute",
     width: "100%",
     height: "100%",
+    borderWidth: 1,
+    borderColor: "#8088dd",
+    backgroundColor: "#fff",
     backfaceVisibility: "hidden",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 12,
-    shadowColor: "#000",
-    shadowOpacity: 0.3,
+    shadowColor: "#8088dd",
+    shadowOpacity: 0.5,
     shadowRadius: 5,
-    shadowOffset: { width: 0, height: 3 },
+    shadowOffset: { width: 1, height: 3 },
   },
 });
