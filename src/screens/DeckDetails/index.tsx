@@ -1,5 +1,4 @@
 import { Text } from "@/components/ThemedText";
-import { DeckCard } from "@/src/components";
 import { Button } from "@/src/components/button";
 import { EmptyState } from "@/src/components/EmptyState";
 import { FloatingButton } from "@/src/components/floatingButton";
@@ -16,6 +15,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import { Flashcard } from "./components/Flashcard";
 
 export const DeckDetailsScreen = () => {
   const { id } = useLocalSearchParams();
@@ -45,19 +45,29 @@ export const DeckDetailsScreen = () => {
         <Fragment>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
-              <Button title="Iniciar Estudo" variant="primary" iconName="play.fill" />
+              <Button
+                title="Iniciar Estudo"
+                variant="primary"
+                iconName="play.fill"
+              />
               <Text type="subtitle" style={{ color: theme.colors.outline }}>
                 Flashcards
               </Text>
               <FlatList
                 contentContainerStyle={{ gap: 12 }}
-                data={mockFlashcards as any}
+                data={mockFlashcards}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
-                  <DeckCard
-                    title={item.title}
-                    description={item.description}
-                    cardCount={item.cardCount}
+                  <Flashcard
+                    question={item.question}
+                    answer={item.answer}
+                    id={item.id}
+                    createdAt={new Date(item.createdAt).toLocaleDateString()}
+                    lastViewedAt={new Date(
+                      item?.lastViewedAt || ""
+                    ).toLocaleDateString()}
+                    ratePrecision={item.ratePrecision}
+                    answeredDetail={item.answeredDetail}
                     onPress={() => {}}
                   />
                 )}
