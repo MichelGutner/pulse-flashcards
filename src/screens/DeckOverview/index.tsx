@@ -17,7 +17,7 @@ import {
   View,
 } from "react-native";
 
-export const StudiesScreen = () => {
+export const DecksOverviewScreen = () => {
   const { theme } = useThemeContext();
   const [showModalAddDeck, setShowModalAddDeck] = useState(false);
 

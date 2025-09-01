@@ -20,7 +20,7 @@ export const Flashcard = ({ question, answer, onPress }: TFlashcardProps) => {
             type="bodySmall"
             style={{ color: theme.colors.outline }}
           >
-          <Text type="bodySmall">Resposta: </Text>
+            <Text type="bodySmall">Resposta: </Text>
             {answer}
           </Text>
         </View>

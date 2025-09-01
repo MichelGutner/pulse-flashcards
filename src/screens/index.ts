@@ -1,4 +1,5 @@
 export * from "./DeckDetails";
+export * from "./DeckOverview";
 export * from "./Home";
-export * from "./Studies";
+export * from "./Practice";
 

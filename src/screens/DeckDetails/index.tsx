@@ -6,7 +6,7 @@ import { ModalAddItems } from "@/src/components/ModalAddItems";
 import { Layout, LinearHeader } from "@/src/components/templates";
 import { useThemeContext } from "@/src/context/ThemeContext";
 import { mockFlashcards } from "@/src/mocks/flashcards";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { Fragment, useState } from "react";
 import {
   FlatList,
@@ -34,6 +34,10 @@ export const DeckDetailsScreen = () => {
     setShowModalAddFlashcard(false);
   };
 
+  const handleGoToPractice = () => {
+    router.push(`/deck/practice/${id}`);
+  };
+
   return (
     <Layout>
       <LinearHeader
@@ -49,6 +53,7 @@ export const DeckDetailsScreen = () => {
                 title="Iniciar Estudo"
                 variant="primary"
                 iconName="play.fill"
+                onPress={handleGoToPractice}
               />
               <Text type="subtitle" style={{ color: theme.colors.outline }}>
                 Flashcards

@@ -37,9 +37,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="study"
+        name="decks"
         options={{
-          title: "Estudos",
+          title: "Baralhos",
           tabBarIcon: ({ color, size }: TabBarIconProps) => (
             <MaterialCommunityIcons
               name="book-open-page-variant-outline"

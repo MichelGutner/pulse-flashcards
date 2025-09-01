@@ -28,6 +28,7 @@ const MAPPING = {
   'pencil': 'edit',
   'trash': 'delete',
   'play.fill': 'play-arrow',
+  'hand.tap': 'touch-app',
 } as IconMapping;
 
 /**
